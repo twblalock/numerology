@@ -56,7 +56,7 @@ module Shuzi
             # Start at the last character and work back to find the full prefix
             last = CHINESE_NUMERALS[argString.slice!(argString.length - 1)]
             # Move backward until we reach a higher character
-            while argString.length > 0 # TODO - what if we reach the end of the string?
+            while argString.length > 0
                 prev = CHINESE_NUMERALS[argString[argString.length - 1]]
                 if prev < last && prev != 0 # Sometimes zero is used as a placeholder
                     prefix = argString.slice!(argString.length - 1) + prefix
