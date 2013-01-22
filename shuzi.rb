@@ -1,13 +1,15 @@
 # encoding: UTF-8
 
 # Converts Chinese numerals to Arabic (i.e. Western) numerals.
-# A work in progress - missing some larger numerals
 
 module Shuzi
     CHINESE_NUMERALS = { # TODO - add larger ones
         "〇" => 0,
         "一" => 1,
+        "幺" => 1,
         "二" => 2,
+        "兩" => 2,
+        "两" => 2,
         "三" => 3,
         "四" => 4,
         "五" => 5,
@@ -16,12 +18,25 @@ module Shuzi
         "八" => 8,
         "九" => 9,
         "十" => 10,
-        "百" => 100,
-        "千" => 1000,
-        "萬" => 10000,
-        "万" => 10000, # Simplified
-        "億" => 100000000,
-        "亿" => 100000000 # Simplified
+        "呀" => 10,
+        "百" => 10 ** 2,
+        "千" => 10 ** 3,
+        "萬" => 10 ** 4,
+        "万" => 10 ** 4, # Simplified
+        "億" => 10 ** 8,
+        "亿" => 10 ** 8, # Simplified
+        "兆" => 10 ** 12,
+        "京" => 10 ** 16,
+        "垓" => 10 ** 20,
+        "秭" => 10 ** 24,
+        "穰" => 10 ** 28,
+        "溝" => 10 ** 32,
+        "沟" => 10 ** 32, # Simplified
+        "澗" => 10 ** 36,
+        "涧" => 10 ** 36, # Simplified
+        "正" => 10 ** 40,
+        "載" => 10 ** 44,
+        "载" => 10 ** 44 # Simplified
     }
 
     # Replaces all Chinese numerals in a string
@@ -33,7 +48,9 @@ module Shuzi
     def self.chineseToArabic(argString)
         last = nil
         prefix = ""
-        if argString.length == 0
+        if argString.nil?
+            return nil
+        elsif argString.length == 0
             return 0
         else
             # Start at the last character and work back to find the full prefix
