@@ -2,7 +2,7 @@
 
 # Converts Chinese numerals to Arabic (i.e. Western) numerals.
 
-module Shuzi
+module Numerology
     CHINESE_NUMERALS = { # TODO - add larger ones
         "〇" => 0,
         "一" => 1,
