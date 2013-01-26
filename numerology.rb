@@ -48,9 +48,7 @@ module Numerology
     def self.chineseToArabic(argString)
         last = nil
         prefix = ""
-        if argString.nil?
-            return nil
-        elsif argString.length == 0
+        if argString.nil? || argString.empty?
             return 0
         else
             # Start at the last character and work back to find the full prefix

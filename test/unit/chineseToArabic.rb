@@ -5,7 +5,7 @@ require_relative "../../numerology"
 
 class ChineseToArabic < Test::Unit::TestCase
     def test_NilParameters
-        assert_equal(Numerology.chineseToArabic(nil), nil)
+        assert_equal(Numerology.chineseToArabic(nil), 0)
     end
 
     def test_WithZero
