@@ -3,7 +3,7 @@
 # Converts Chinese numerals to Arabic (i.e. Western) numerals.
 
 module Numerology
-    CHINESE_NUMERALS = { # TODO - add larger ones
+    CHINESE_NUMERALS = {
         "〇" => 0,
         "一" => 1,
         "幺" => 1,
@@ -39,21 +39,16 @@ module Numerology
         "载" => 10 ** 44 # Simplified
     }
 
-    # Replaces all Chinese numerals in a string
-    def self.translateString(argString)
-        return argString.gsub(/#{CHINESE_NUMERALS.keys}+/) { |match| self.chineseToArabic(match) }
-    end
-
     # Converts Chinese numerals to Arabic (i.e. Western) numerals
     def self.chineseToArabic(argString)
         last = nil
-        prefix = ""
+        prefix = String.new
         if argString.nil? || argString.empty?
             return 0
         else
             # Start at the last character and work back to find the full prefix
             last = CHINESE_NUMERALS[argString.slice!(argString.length - 1)]
-            # Move backward until we reach a higher character
+            # Move backward until prev has a higher value than last
             while argString.length > 0
                 prev = CHINESE_NUMERALS[argString[argString.length - 1]]
                 if prev < last && prev != 0 # Sometimes zero is used as a placeholder
@@ -63,6 +58,8 @@ module Numerology
                 end
             end
         end
+        # Multiply the last character by the value of its prefix
+        # and recurse over the rest of the string
         return ((prefix.length > 0 ? self.chineseToArabic(prefix) : 1) * last) + self.chineseToArabic(argString)
     end
 end
