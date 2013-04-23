@@ -39,10 +39,6 @@ var nums = map[string] float64 {
     "载" : math.Pow(10, 44), // Simplified
 }
 
-func ValueOf(c string) float64 {
-    return nums[c]
-}
-
 // TODO return an error if an invalid character is found?
 func CtoA(s string) float64 {
     if s == "" {
