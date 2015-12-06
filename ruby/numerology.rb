@@ -1,4 +1,4 @@
-# encoding: UTF-8
+# encoding: utf-8
 
 # Converts Chinese numerals to Arabic (i.e. Western) numerals.
 
@@ -47,8 +47,8 @@ module Numerology
             return 0
         else
             # Start at the last character and work back to find the full prefix
+            # by moving backward until prev > last
             last = CHINESE_NUMERALS[argString.slice!(argString.length - 1)]
-            # Move backward until prev has a higher value than last
             while argString.length > 0
                 prev = CHINESE_NUMERALS[argString[argString.length - 1]]
                 if prev < last && prev != 0 # Sometimes zero is used as a placeholder
@@ -58,6 +58,7 @@ module Numerology
                 end
             end
         end
+        
         # Multiply the last character by the value of its prefix
         # and recurse over the rest of the string
         return ((prefix.length > 0 ? self.chineseToArabic(prefix) : 1) * last) + self.chineseToArabic(argString)

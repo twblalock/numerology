@@ -1,18 +1,20 @@
-# encoding: UTF-8
+# encoding: utf-8
 
 require "test/unit"
 require_relative "../../numerology"
 
 class ChineseToArabic < Test::Unit::TestCase
-    def test_NilParameters
+    def test_nil
         assert_equal(Numerology.chineseToArabic(nil), 0)
     end
-
-    def test_WithZero
-        assert_equal(Numerology.chineseToArabic("二百〇五"), 205)
-    end
-
-    def test_LargeNumbers
+    
+    def test_numbers
+        assert_equal(Numerology.chineseToArabic("〇"), 0)
+    	assert_equal(Numerology.chineseToArabic("三"), 3)
+	assert_equal(Numerology.chineseToArabic("〇三"), 3)
+    	assert_equal(Numerology.chineseToArabic("二百〇五"), 205)
+	assert_equal(Numerology.chineseToArabic("三十"), 30)
+	assert_equal(Numerology.chineseToArabic("十三"), 13)
         assert_equal(Numerology.chineseToArabic("一億三万四千五百七十三"), 100034573)
         assert_equal(Numerology.chineseToArabic("一億百九十万一"), 101900001)
         assert_equal(Numerology.chineseToArabic("四十九億八百二十七万四千百七十三"), 4908274173)

@@ -2,15 +2,14 @@ package numerology
 
 import "testing"
 
-func Test_Zero(t *testing.T) {
-    result := CtoA("0")
-    if result != 0 {
-        t.Errorf("CtoA(0) == %d, want %f", result, 0)
-    }
-}
-
-func TestLargeNumbers(t *testing.T) {
-    var nums = map[string] float64 {
+func TestNumbers(t *testing.T) {
+    var nums = map[string] int64 {
+    	"〇": 0,
+    	"三": 3,
+	"〇三": 3,
+    	"二百〇五": 205,
+	"三十": 30,
+	"十三": 13,
         "一億三万四千五百七十三": 100034573,
 	"一億百九十万一": 101900001,
 	"四十九億八百二十七万四千百七十三": 4908274173,
